@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -17,15 +18,35 @@ namespace Script.Global
             Obstacle
         }
 
-        public struct MapItem
+        public struct MapItem : IEquatable<MapItem>
         {
             public Vector2 Position;
             public MapItemType Type;
+            public Vector2Int MapPosition;
 
-            public MapItem(Vector2 pos, MapItemType type)
+            public MapItem(Vector2 pos, MapItemType type, Vector2Int mapPos)
             {
                 Position = pos;
                 Type = type;
+                MapPosition = mapPos;
+            }
+
+            public bool Equals(MapItem other)
+            {
+                return Position.Equals(other.Position) && Type == other.Type;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is MapItem other && Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    return (Position.GetHashCode() * 397) ^ (int) Type;
+                }
             }
         }
 
@@ -100,7 +121,7 @@ namespace Script.Global
                 _map.Add(new List<MapItem>());
                 for (int j = 0; j < pathMap.size.x; j++)
                 {
-                    _map[i].Add(new MapItem(Vector2.zero, MapItemType.Undefined));
+                    _map[i].Add(new MapItem(Vector2.zero, MapItemType.Undefined, new Vector2Int(j, i)));
                 }
             }
 
@@ -131,7 +152,8 @@ namespace Script.Global
 
                 if (map.HasTile(localPlace))
                 {
-                    _map[_yOffset + localPlace.y][_xOffset + localPlace.x] = new MapItem(place + size, type);
+                    _map[_yOffset + localPlace.y][_xOffset + localPlace.x] =
+                        new MapItem(place + size, type, new Vector2Int(_xOffset + localPlace.x, _yOffset + localPlace.y));
                 }
             }
 
