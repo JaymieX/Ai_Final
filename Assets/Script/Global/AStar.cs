@@ -85,6 +85,20 @@ namespace Script.Global
                 debugCount++;
             }
 
+            // Add result
+            MapItem p = _predecessorDict[mapNodeEnd];
+            int count = 200;
+
+            while (!p.Equals(mapNodeStart))
+            {
+                p = _predecessorDict[p];
+                result.Enqueue(p.Position);
+
+                if (count < 0) break;
+
+                count--;
+            }
+
             return result;
         }
 
