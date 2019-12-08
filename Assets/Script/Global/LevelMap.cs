@@ -159,7 +159,7 @@ namespace Script.Global
 
         }
 
-        public Queue<Vector2> GetPath(Vector2 start, Vector2 end)
+        public Stack<Vector2> GetPath(Vector2 start, Vector2 end)
         {
             Vector3Int tileStart = pathMap.WorldToCell(new Vector3(start.x, start.y, 0f));
             Vector3Int tileEnd = pathMap.WorldToCell(new Vector3(end.x, end.y, 0f));
@@ -169,7 +169,7 @@ namespace Script.Global
 
             if (actualEnd == Vector2Int.zero)
             {
-                return new Queue<Vector2>();
+                return new Stack<Vector2>();
             }
 
             _debugPathStart = _map[actualStart.y][actualStart.x].Position;

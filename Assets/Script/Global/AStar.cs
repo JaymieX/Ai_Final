@@ -14,7 +14,7 @@ namespace Script.Global
         private static Dictionary<MapItem, float> _fDistanceDict = new Dictionary<MapItem, float>();
         private static Dictionary<MapItem, float> _gDistanceDict = new Dictionary<MapItem, float>();
 
-        public static Queue<Vector2> GetAStarPath(List<List<LevelMap.MapItem>> graph, Vector2 start, Vector2 end)
+        public static Stack<Vector2> GetAStarPath(List<List<LevelMap.MapItem>> graph, Vector2 start, Vector2 end)
         {
             // Clear old data
             _visited.Clear();
@@ -24,7 +24,7 @@ namespace Script.Global
             _fDistanceDict.Clear();
             _gDistanceDict.Clear();
 
-            Queue<Vector2> result = new Queue<Vector2>();
+            Stack<Vector2> result = new Stack<Vector2>();
 
             MapItem mapNodeStart = graph[(int)start.y][(int)start.x];
             MapItem mapNodeEnd = graph[(int)end.y][(int)end.x];
@@ -92,7 +92,7 @@ namespace Script.Global
             while (!p.Equals(mapNodeStart))
             {
                 p = _predecessorDict[p];
-                result.Enqueue(p.Position);
+                result.Push(p.Position);
 
                 if (count < 0) break;
 

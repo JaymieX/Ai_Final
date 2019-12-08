@@ -8,7 +8,7 @@ namespace Script
 {
     public class Agent : MonoBehaviour
     {
-        internal Queue<Vector2> CurrentPath;
+        internal Stack<Vector2> CurrentPath;
 
         public float speed;
 
@@ -18,14 +18,14 @@ namespace Script
         {
             if (!_debugDrawStart) return;
 
-            Queue<Vector2> pathCpy = new Queue<Vector2>(CurrentPath);
+            Stack<Vector2> pathCpy = new Stack<Vector2>(CurrentPath);
 
             Color baseColor = Gizmos.color;
             Gizmos.color = Color.cyan;
 
             while (pathCpy.Count != 0)
             {
-                Vector3 point = pathCpy.Dequeue();
+                Vector3 point = pathCpy.Pop();
 
                 Gizmos.DrawSphere(point, 0.1f);
             }
@@ -37,7 +37,7 @@ namespace Script
         {
             _debugDrawStart = true;
 
-            CurrentPath = new Queue<Vector2>();
+            CurrentPath = new Stack<Vector2>();
         }
 
         private void Update()
