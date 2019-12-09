@@ -17,6 +17,10 @@ namespace Script
 
                 GetComponent<Rigidbody2D>().AddRelativeForce(Time.fixedDeltaTime * speed * direction);
             }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
