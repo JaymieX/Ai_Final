@@ -10,6 +10,8 @@ namespace Script
     {
         internal Stack<Vector2> CurrentPath;
 
+        internal List<GameObject> ObjectsInRange;
+
         public float speed;
 
         [SerializeField]
@@ -46,11 +48,23 @@ namespace Script
             {
                 CurrentPath = new Stack<Vector2>();
             }
+
+            ObjectsInRange = new List<GameObject>();
         }
 
         public void SetPath(Stack<Vector2> path)
         {
             CurrentPath = path;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!ObjectsInRange.Contains(other.gameObject)) { ObjectsInRange.Add(other.gameObject); }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            ObjectsInRange.Remove(other.gameObject);
         }
     }
 }

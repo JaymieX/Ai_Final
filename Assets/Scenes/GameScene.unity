@@ -18046,6 +18046,7 @@ GameObject:
   - component: {fileID: 555053890}
   - component: {fileID: 555053894}
   - component: {fileID: 555053895}
+  - component: {fileID: 555053896}
   - component: {fileID: 555053892}
   - component: {fileID: 555053893}
   m_Layer: 8
@@ -18054,7 +18055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &555053890
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18200,6 +18201,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.42, y: 0.56}
   m_EdgeRadius: 0
+--- !u!58 &555053896
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555053889}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
 --- !u!1 &785463144
 GameObject:
   m_ObjectHideFlags: 0

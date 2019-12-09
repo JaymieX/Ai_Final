@@ -88,7 +88,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -180,6 +180,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 103f1d8f351853045ac88b52f1a19d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4421202945541507026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9452229adfbcf3a4386fc394bdd9fe8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 3
+  projectile: {fileID: 4580176943199192496, guid: a5c42baab266a664aba8a01617125621,
+    type: 3}
+  targetTag: Enemy
 --- !u!1102 &7291338519917384478
 AnimatorState:
   serializedVersion: 5
@@ -195,6 +211,7 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 3097410144744090425}
   - {fileID: -6111884735760539967}
+  - {fileID: 4421202945541507026}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
