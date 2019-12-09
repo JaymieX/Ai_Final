@@ -12,10 +12,15 @@ namespace Script
 
         public float speed;
 
+        [SerializeField]
+        private bool drawDebugPath;
+
         private bool _debugDrawStart = false;
 
         private void OnDrawGizmos()
         {
+            if (!drawDebugPath) return;
+
             if (!_debugDrawStart) return;
 
             Stack<Vector2> pathCpy = new Stack<Vector2>(CurrentPath);
@@ -37,17 +42,15 @@ namespace Script
         {
             _debugDrawStart = true;
 
-            CurrentPath = new Stack<Vector2>();
+            if (CurrentPath == null)
+            {
+                CurrentPath = new Stack<Vector2>();
+            }
         }
 
-        private void Update()
+        public void SetPath(Stack<Vector2> path)
         {
-            if (Input.GetMouseButtonDown(1))
-            {
-                Debug.Log("Moving");
-
-                CurrentPath = LevelMap.Instance.GetPath(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            }
+            CurrentPath = path;
         }
     }
 }

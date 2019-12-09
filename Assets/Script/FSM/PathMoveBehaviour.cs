@@ -13,15 +13,32 @@ namespace Script.FSM
         {
             base.OnStateEnter(animator, stateInfo, layerIndex);
 
+            _currentTarget = Vector2.zero;
+
             _agent = animator.GetComponent<Agent>();
             _body = animator.GetComponent<Rigidbody2D>();
 
-            _currentTarget = _agent.CurrentPath.Pop();
+            if (_agent.CurrentPath.Count != 0)
+            {
+                _currentTarget = _agent.CurrentPath.Pop();
+            }
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             base.OnStateUpdate(animator, stateInfo, layerIndex);
+
+            if (_currentTarget == Vector2.zero)
+            {
+                if (_agent.CurrentPath.Count != 0)
+                {
+                    _currentTarget = _agent.CurrentPath.Pop();
+                }
+                else
+                {
+                    return;
+                }
+            }
 
             // Far, move in
             if (Vector2.Distance(_agent.transform.position, _currentTarget) > 0.1f)
