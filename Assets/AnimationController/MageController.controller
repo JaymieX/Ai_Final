@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9452229adfbcf3a4386fc394bdd9fe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 1
+  interval: 3
   projectile: {fileID: 4580176943199192496, guid: a5c42baab266a664aba8a01617125621,
     type: 3}
   targetTag: Enemy

@@ -7,8 +7,12 @@ namespace Script
         public GameObject target;
         public float speed;
         public string killTag;
+        public float life;
 
         private float eTime = 0f;
+        private Vector2 targetPos;
+
+        private bool dirLock = false;
 
         private void Update()
         {
@@ -16,16 +20,27 @@ namespace Script
 
             if (target != null)
             {
-                Vector2 direction = target.transform.position - transform.position;
-                direction.x += Mathf.PerlinNoise(eTime, 0f) * .5f;
-                direction.x += Mathf.PerlinNoise(0f, eTime) * .5f;
-                direction.Normalize();
-
-                GetComponent<Rigidbody2D>().AddRelativeForce(Time.fixedDeltaTime * speed * direction);
+                targetPos = target.transform.position;
             }
             else
             {
-                Destroy(this.gameObject);
+                if (!dirLock)
+                {
+                    targetPos *= 50f;
+                    dirLock = true;
+                }
+            }
+
+            Vector2 direction = targetPos - (Vector2)transform.position;
+            direction.x += Mathf.PerlinNoise(eTime, 0f) * .5f;
+            direction.x += Mathf.PerlinNoise(0f, eTime) * .5f;
+            direction.Normalize();
+
+            GetComponent<Rigidbody2D>().AddRelativeForce(Time.fixedDeltaTime * speed * direction);
+
+            if (eTime >= life)
+            {
+                Destroy(gameObject);
             }
         }
 
