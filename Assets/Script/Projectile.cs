@@ -32,8 +32,8 @@ namespace Script
             }
 
             Vector2 direction = targetPos - (Vector2)transform.position;
-            direction.x += Mathf.PerlinNoise(eTime, 0f) * .5f;
-            direction.x += Mathf.PerlinNoise(0f, eTime) * .5f;
+            direction.x += Mathf.PerlinNoise(eTime, 0f) * .4f;
+            direction.x += Mathf.PerlinNoise(0f, eTime) * .4f;
             direction.Normalize();
 
             GetComponent<Rigidbody2D>().AddRelativeForce(Time.fixedDeltaTime * speed * direction);
