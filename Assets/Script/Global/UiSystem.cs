@@ -7,6 +7,11 @@ public class UiSystem : MonoBehaviour
 {
     public void StartWave()
     {
-        Spawner.Instance.Spawn("spider", 10, 0.8f);
+        Spawner.Instance.Spawn("spider", 10, 2f);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
