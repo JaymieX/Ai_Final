@@ -8,11 +8,17 @@ namespace Script
         public float speed;
         public string killTag;
 
+        private float eTime = 0f;
+
         private void Update()
         {
+            eTime += Time.deltaTime;
+
             if (target != null)
             {
                 Vector2 direction = target.transform.position - transform.position;
+                direction.x += Mathf.PerlinNoise(eTime, 0f) * .5f;
+                direction.x += Mathf.PerlinNoise(0f, eTime) * .5f;
                 direction.Normalize();
 
                 GetComponent<Rigidbody2D>().AddRelativeForce(Time.fixedDeltaTime * speed * direction);
